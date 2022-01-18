@@ -1,0 +1,290 @@
+/* HOME ADMIN */
+.root-adminHome{
+  margin-top: -7rem;
+}
+.bgHome{
+  width: 100%;
+  min-height: 50vh;
+  background-image: url(./assets/bg-1.jpg);
+  background-size: 100%;
+  background-position: center;
+}
+.cardStyleProfile{
+  box-shadow: 1px 3px 5px 0px rgba(0,0,0,0.26);
+-webkit-box-shadow: 1px 3px 5px 0px rgba(0,0,0,0.26);
+-moz-box-shadow: 1px 3px 5px 0px rgba(0,0,0,0.26);
+}
+.profileCard{
+  align-items: center;
+}
+.profilPicture{
+  height: 10rem;
+  width: 10rem;
+  border-radius: 100%;
+}
+.nameProfile{
+  font-size: 2rem;
+  font-weight: 700;
+  line-height: 0.5rem;
+}
+.roleProfile{
+  font-size: 1rem;
+  line-height: 1rem;
+}
+.homeTitle{
+  color: white;
+  text-align: center;
+  padding-top: 4rem;
+  font-size: 5rem;
+  font-weight: 700;
+}
+.homeDesc{
+  color: white;
+  text-align: center;
+  font-size: 2rem;
+}
+.space{
+  width: 1rem;
+}
+.cardTransaksi{
+  background-color: #0275d8;
+  border-radius: 0.5rem;
+}
+.transaksiNow{
+  font-size: 2rem;
+  color: white;
+  text-align: center;
+  padding-top: 3.2rem;
+  line-height: 2.5rem;
+}
+.cardTransaksi:hover{
+  background-color: #292b2c;
+}
+
+/* LOGIN */
+.bgLogin{
+  width: 100%;
+  min-height: 97.85vh;
+  background-image: url(./assets/bg-3.jpg);
+  background-size: 100%;
+  background-position: center;
+}
+
+
+/* COBA */
+.aside {
+  background-color: #f2f2f2;
+  display: flex;
+  height: 100vh;
+  left: 0;
+  position: fixed;
+  top: 0;
+  width: 19rem;
+  z-index: 5;
+  border-radius: 1rem;
+}
+
+.disable { 
+  pointer-events: none;
+ 
+}
+
+.disable > a { 
+  color: var(--grey-color-2);
+}
+
+.aside > aside {
+  background-color: #1A374D;
+  height: 100%;
+  padding: 1.5rem 0;
+  position: relative;
+  text-align: center;
+  width: 4rem;
+  border-top-left-radius: 0%;
+  border-top-right-radius: 1rem;
+  border-bottom-left-radius: 0%;
+  border-bottom-right-radius: 1rem;
+}
+
+.aside > aside > a:first-child {
+  width: 2.5rem;
+}
+
+.aside > aside > a:first-child > img {
+  width: 2rem
+}
+
+.aside > aside > a:not(:first-child) {
+  margin: auto;
+  left: 0;
+  position: absolute;
+  right: 0;
+  width: 1.5rem;
+}
+
+.aside > aside > a:not(:first-child) > img {
+  width: 100%;
+}
+
+.aside > aside > a:nth-child(2) {
+  bottom: 4rem;
+}
+
+.aside > aside > a:nth-child(3) {
+  bottom: 1.5rem;
+  cursor: pointer;
+}
+
+.aside > section {
+  padding: 1.5rem 1rem;
+  width: 100%;
+}
+
+.aside > section > figure {
+  display: flex;
+}
+
+.aside > section > figure > img {
+  margin-right: 0.5rem;
+  width: 2.5rem;
+  height: 2.5rem;
+}
+
+.aside > section > figure > figcaption > small {
+  color: var(--grey-color-2);
+  font-size: 0.75rem;
+  line-height: 0.875rem;
+}
+
+.main {
+  margin-left: var(--aside-width);
+  padding: 2.5rem;
+}
+
+.navContainer {
+  overflow: auto;
+}
+
+.nav {
+  margin-top: 2.5rem;
+}
+
+.nav > a {
+  display: block;
+  font-size: 0.875rem;
+  font-weight: 600;
+  line-height: 1.5rem;
+  margin-bottom: 0.5rem;
+  padding: 0.5rem;
+  transition: background-color 0.25s;
+}
+
+.nav > a > section {
+  align-items: center;
+  color: var(--text-color);
+  display: flex;
+}
+
+.nav > a > section > svg {
+  margin-right: 1rem;
+}
+
+.nav > a:hover, .nav > a.active, 
+.nav-item > section:hover, .nav-item > ul > li > a:hover {
+  background-color: var(--grey-color-3);
+  border-radius: 0.1875rem;
+}
+
+.nav > a.active > section {
+  color: var(--primary-color);
+}
+
+.nav > a.active > section > svg > path {
+  fill: var(--primary-color);
+}
+
+.nav-item {
+  color: var(--text-color);
+  font-size: 0.875rem;
+  font-weight: 600;
+  line-height: 1.5rem;
+  margin-bottom: 0.5rem;
+}
+
+.nav-item > section {
+  align-items: center;
+  cursor: pointer;
+  display: flex;
+  padding: 0.5rem;
+  position: relative;
+  transition: background-color 0.25s;
+}
+
+.nav-item > section > svg {
+  margin-right: 1rem;
+}
+
+.nav-item > section > img {
+  margin-left: auto;
+  transition: transform 0.25s;
+  width: 1.5rem;
+}
+
+.nav-item > section > img.open {
+  transform: rotate(-180deg);
+}
+
+.nav-item > ul {
+  overflow-y: hidden;
+  position: relative;
+  transition: max-height 0.25s;
+}
+
+.nav-item > ul > li {
+  margin-bottom: 0.5rem;
+}
+
+.nav-item > ul > li > a {
+  display: block;
+  padding: 0.5rem 3rem;
+  transition: background-color 0.25s;
+}
+
+.nav-item > ul > li > a.active {
+  background-color: var(--grey-color-3);
+  border-radius: 0.1875rem;
+  color: var(--primary-color);
+}
+
+.belNotif{
+  position: relative;
+  cursor: pointer;
+}
+
+.boxUnread{
+  position: absolute;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  right: 0;
+  width: 16px;
+  height: 16px;
+  border-radius: 8px;
+  background-color: var(--error-color);
+}
+
+.boxUnread>span{
+  color: var(--background-color-2);
+  font-size: 0.5rem;
+  font-weight: 600;
+  line-height: 1.5rem;
+}
+
+.boxUnreadHide{
+  display: none;
+} 
+
+.logOut{
+  cursor: pointer;
+}
