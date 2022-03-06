@@ -590,7 +590,6 @@ export default function Crud() {
         >
           <Fade in={modalInfo}>
             <div className={classes.paperSiswa}>
-
               {/* body card start */}
               <Grid container justify="center" alignItems="center">
                 <Typography variant="h4">DETAIL SISWA</Typography>
@@ -616,11 +615,9 @@ export default function Crud() {
                 </Grid>
               </Grid>
               {/* body card end */}
-
             </div>
           </Fade>
         </Modal>
-        {/* modal add end */}
 
         {/* snackbar */}
         <Snackbar

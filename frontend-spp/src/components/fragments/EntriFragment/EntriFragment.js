@@ -57,9 +57,7 @@ export default function EntriFragment() {
   // style
   const useStyles = makeStyles({
     mainContainer: {
-      minWidth: "100vw",
-      minHeight: "94vh",
-      marginTop: "-15rem"
+      paddingTop: "3rem"
     },
     cardContainer: {
       minWidth: "50vw",
@@ -135,9 +133,6 @@ export default function EntriFragment() {
   if (values.role === "admin" || values.role === "petugas") {
     return (
       <>
-        <div className="bgHome" >
-          <h1 className="homeTitle">Pembayaran SPP</h1>
-        </div>
         <Grid container className={classes.mainContainer} justify="center" alignItems="center">
           <Grid item>
             <Card className={classes.cardContainer} elevation={10}>
@@ -146,7 +141,7 @@ export default function EntriFragment() {
                   {/* Petugas */}
                   <Grid container alignItems="center">
                     <Grid item xs={4}>
-                      <Typography variant="h6">Petugas</Typography>
+                      <Typography variant="p">Petugas</Typography>
                     </Grid>
                     <Grid item xs={8}>
                       <TextField disabled
@@ -160,7 +155,7 @@ export default function EntriFragment() {
                   {/* NISN */}
                   <Grid container alignItems="center">
                     <Grid item xs={4}>
-                      <Typography variant="h6">NISN</Typography>
+                      <Typography variant="p">NISN</Typography>
                     </Grid>
                     <Grid item xs={8}>
                       <TextField
@@ -175,7 +170,7 @@ export default function EntriFragment() {
                   {/* NAMA SISWA */}
                   <Grid container alignItems="center">
                     <Grid item xs={4}>
-                      <Typography variant="h6">Nama Siswa</Typography>
+                      <Typography variant="p">Nama Siswa</Typography>
                     </Grid>
                     <Grid item xs={8}>
                       <TextField
@@ -190,7 +185,7 @@ export default function EntriFragment() {
                   {/* Tanggal Bayar */}
                   <Grid container alignItems="center">
                     <Grid item xs={4}>
-                      <Typography variant="h6">Tanggal Bayar</Typography>
+                      <Typography variant="p">Tanggal Bayar</Typography>
                     </Grid>
                     <Grid item xs={8}>
                       <TextField disabled
@@ -201,10 +196,10 @@ export default function EntriFragment() {
                     </Grid>
                   </Grid>
 
-                  {/* Bulan DIbayar */}
+                  {/* Bulan Dibayar */}
                   <Grid container alignItems="center">
                     <Grid item xs={4}>
-                      <Typography variant="h6">Bulan Dibayar</Typography>
+                      <Typography variant="p">Bulan Dibayar</Typography>
                     </Grid>
                     <Grid item xs={8}>
                       <TextField select
@@ -226,7 +221,7 @@ export default function EntriFragment() {
                   {/* Tahun Dibayar */}
                   <Grid container alignItems="center">
                     <Grid item xs={4}>
-                      <Typography variant="h6">Tahun Dibayar</Typography>
+                      <Typography variant="p">Tahun Dibayar</Typography>
                     </Grid>
                     <Grid item xs={8}>
                       <TextField select
@@ -247,7 +242,7 @@ export default function EntriFragment() {
                   {/* ID SPP */}
                   <Grid container alignItems="center">
                     <Grid item xs={4}>
-                      <Typography variant="h6">ID SPP</Typography>
+                      <Typography variant="p">ID SPP</Typography>
                     </Grid>
                     <Grid item xs={8}>
                       <TextField disabled
@@ -261,7 +256,7 @@ export default function EntriFragment() {
                   {/* Jumlah Bayar */}
                   <Grid container alignItems="center">
                     <Grid item xs={4}>
-                      <Typography variant="h6">Jumlah Bayar</Typography>
+                      <Typography variant="p">Jumlah Bayar</Typography>
                     </Grid>
                     <Grid item xs={8}>
                       <TextField disabled

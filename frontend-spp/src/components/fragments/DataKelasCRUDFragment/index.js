@@ -1,1 +1,1 @@
-export {default} from './DataKelasCRUDFragment';
+export {default} from './DataKelasFragment';

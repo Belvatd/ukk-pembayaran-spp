@@ -1,9 +1,5 @@
 // GENERAL
 import React from 'react';
-// import kids1 from '../../../assets/kids1.png'
-// import styles from './styles.scoped.css';
-// import { Card } from 'react-bootstrap'
-
 
 // AXIOS
 import axios from "axios"

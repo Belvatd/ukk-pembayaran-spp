@@ -1,7 +1,16 @@
-/* HOME ADMIN */
-.root-adminHome{
-  margin-top: -7rem;
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700;900');
+
+*{
+  font-family: 'Poppins', sans-serif;
+  font-weight: 400;
 }
+
+.rootFragment{
+  margin-left: 19rem;
+  background-color: #f5f5f5;
+  min-height: 90vh;
+}
+/* HOME ADMIN */
 .bgHome{
   width: 100%;
   min-height: 50vh;
@@ -68,12 +77,59 @@
   background-image: url(./assets/bg-3.jpg);
   background-size: 100%;
   background-position: center;
+  display: flex;
 }
 
+/* NAVCONTENT */
+.navContent{
+  display: flex;
+  align-items: center;
+  color: #292b2c;
+  max-height: 2vh;
+  justify-content: flex-end;
+}
 
-/* COBA */
+.navContent>p{
+  margin-left:10px;
+  align-items: center;
+  margin-bottom: 0px;
+  font-weight: 600;
+  font-size: 14px;
+}
+
+.profile{
+  width: 45px;
+  height: 45px;
+  border-radius: 2rem;
+  background-color: #f5f5f5;
+}
+
+.badgeRole{
+  color: #fff;
+  min-width: 3rem;
+  text-align: center;
+  align-self: center;
+  margin-left: 26px;
+  background-color: #DBE9F6;
+  font-size: 12px;
+  line-height: 18px;
+  font-weight: 600;
+}
+.logout{
+  margin-left: 16px;
+}
+
+.navLink{
+  color: #000;
+}
+
+.navLink>img{
+  margin-right: 20px;
+}
+
+/* SIDEBAR */
 .aside {
-  background-color: #f2f2f2;
+  background-color: #ffff;
   display: flex;
   height: 100vh;
   left: 0;
@@ -81,7 +137,6 @@
   top: 0;
   width: 19rem;
   z-index: 5;
-  border-radius: 1rem;
 }
 
 .disable { 
@@ -93,18 +148,14 @@
   color: var(--grey-color-2);
 }
 
-.aside > aside {
-  background-color: #1A374D;
+/* .aside > aside {
+  background-color: #0077E5;
   height: 100%;
   padding: 1.5rem 0;
   position: relative;
   text-align: center;
   width: 4rem;
-  border-top-left-radius: 0%;
-  border-top-right-radius: 1rem;
-  border-bottom-left-radius: 0%;
-  border-bottom-right-radius: 1rem;
-}
+} */
 
 .aside > aside > a:first-child {
   width: 2.5rem;
@@ -157,8 +208,9 @@
 }
 
 .main {
-  margin-left: var(--aside-width);
-  padding: 2.5rem;
+  /* margin-left: 19rem; */
+  padding: 4vh;
+  background-color: #fff;
 }
 
 .navContainer {
@@ -287,4 +339,18 @@
 
 .logOut{
   cursor: pointer;
+}
+
+.nav > div {
+  display: block;
+  width: 300px;
+  height: 50px;
+}
+
+/* CONTENT */
+.titlePage{
+  padding-left: 2rem;
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+  font-weight: 600;
 }

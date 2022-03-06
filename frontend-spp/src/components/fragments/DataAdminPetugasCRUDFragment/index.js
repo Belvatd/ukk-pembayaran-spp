@@ -1,1 +1,1 @@
-export {default} from './DataAdminPetugasCRUDFragment';
+export {default} from './DataAdminPetugasFragment';

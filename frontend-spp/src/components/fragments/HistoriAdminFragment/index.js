@@ -1,1 +1,1 @@
-export {default} from './HistoriAdminFragment';
+export {default} from './HistoryAdminFragment';

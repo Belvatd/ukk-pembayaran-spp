@@ -1,10 +1,11 @@
 import { makeStyles } from '@material-ui/core/styles';
+import { height } from '@mui/system';
 
-const useStyles = makeStyles((theme)=>({
+const useStyles = makeStyles((theme) => ({
     // home start
     headerContainerHome: {
         minHeight: "100vh",
-        
+
     },
     profileContainer: {
         minHeight: "70vh",
@@ -27,7 +28,7 @@ const useStyles = makeStyles((theme)=>({
     texth1: {
         fontSize: 50,
     },
-    
+
     // login
     cardLogin: {
         minWidth: 320,
@@ -64,9 +65,9 @@ const useStyles = makeStyles((theme)=>({
     headerText: {
         color: "white"
     },
-    bodyContainerSiswa:{
+    bodyContainerSiswa: {
         marginTop: "-10rem",
-        marginBottom:"3rem"
+        marginBottom: "3rem"
     },
 
     // table (histori)
@@ -77,7 +78,9 @@ const useStyles = makeStyles((theme)=>({
     // table spp
     columnId: {
         minWidth: "5vw",
-        fontSize: "20px"
+        fontSize: "20px",
+        fontWeight: "300",
+        fontFamily: "Poppins"
     },
     columnTahun: {
         minWidth: "25vw",
@@ -90,6 +93,10 @@ const useStyles = makeStyles((theme)=>({
     columnAksi: {
         minWidth: "5vw",
         fontSize: "20px"
+    },
+    pagination: {
+        fontWeight: "500",
+        fontFamily: "Poppins"
     },
 
     // table kelas
@@ -108,12 +115,12 @@ const useStyles = makeStyles((theme)=>({
         maxHeight: "60vh",
         maxWidth: "95vw",
         marginTop: "2vh",
-        marginBottom:"0rem"
+        marginBottom: "0rem"
     },
     bodyImgSiswa: {
-        maxWidth: "15vh",
-        maxHeight: "15vh",
-        borderRadius: 100,
+        minWidth: "10rem",
+        maxHeight: "10rem",
+        borderRadius: 500,
         margin: "2vh"
     },
 
@@ -124,21 +131,23 @@ const useStyles = makeStyles((theme)=>({
         maxWidth: "95vw"
     },
     bodyImgAdmin: {
-        maxHeight: "20vh",
-        maxWidth: "20vh",
+        minWidth: "10rem",
+        maxHeight: "10rem",
         borderRadius: 100,
-        marginTop: "5vh"
+        marginTop: "0vh"
     },
 
     // button
     button: {
-        minWidth: "110px",
-        margin: "5px"
+        width: "0px",
+        // height: "30px",
+        // margin: "5px",
+        // top: "0.4rem",
     },
     buttonInfo: {
-        minWidth: "110px",
-        margin: "5px",
-        backgroundColor: "#ffc107"
+        // width: "110px",
+        // margin: "5px",
+        // top: "0.1rem",
     },
     footerContainer: {
         position: "fixed",
@@ -161,16 +170,25 @@ const useStyles = makeStyles((theme)=>({
         },
     },
 
-
+    // modal
     modal: {
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'center',
     },
     paperHistori: {
-        backgroundColor: theme.palette.background.paper,
-        border: '2px solid #000',
-        boxShadow: theme.shadows[5],
+        backgroundColor: '#fff',
+        border: 'none',
+        borderRadius: '10px',
+        padding: theme.spacing(2, 4, 3),
+        minWidth: "30vw",
+        minHeight: "40vh",
+        maxWidth: "50vw",
+    },
+    paperModal: {
+        backgroundColor: '#fff',
+        border: 'none',
+        borderRadius: '10px',
         padding: theme.spacing(2, 4, 3),
         minWidth: "30vw",
         minHeight: "40vh",
@@ -214,10 +232,11 @@ const useStyles = makeStyles((theme)=>({
     },
     inputField: {
         minWidth: "100%",
-        margin: "5px"
+        margin: "5px",
+        fontFamily: "Poppins"
     },
     formContainer: {
-        margin: "2vh"
+        margin: "3vh"
     },
     infoContainer: {
         marginLeft: "7vw"
@@ -237,7 +256,29 @@ const useStyles = makeStyles((theme)=>({
         display: 'none'
     },
 
+    titleModal: {
+        fontSize: '24px',
+        fontWeight: '600',
+    },
+    labelModal: {
+        fontWeight: '500',
+        fontSize: '16px'
+    },
+    valueModal: {
+        fontWeight: '400',
+        fontSize: '16px',
+        lineHeight: '24px'
+    },
+    labelForm: {
+        fontWeight: '600',
+        fontFamily: 'Poppins'
+    },
+
+    // ROW
+    row: {
+        display: 'flex'
+    }
 
 }))
 
-export {useStyles}
+export { useStyles }

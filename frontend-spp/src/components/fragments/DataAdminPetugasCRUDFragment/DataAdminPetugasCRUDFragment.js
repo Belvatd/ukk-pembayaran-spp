@@ -242,10 +242,7 @@ export default function DataAdminPetugasCRUDFragment() {
           </Grid>
           {/* Body end */}
         </Grid>
-
-
-
-        {/* modal edit start*/}
+        
         <Modal
           aria-labelledby="transition-modal-title"
           aria-describedby="transition-modal-description"
@@ -260,13 +257,11 @@ export default function DataAdminPetugasCRUDFragment() {
               <Grid container justify="center" alignItems="center">
                 <Typography variant="h4">FORM ADMIN</Typography>
 
-                {/* body card start */}
                 <Grid container justify="center" className={classes.formContainer}>
                   <Grid container justify="center" lg={4} xs={12}>
                     <img className={classes.bodyImgAdmin} src={admin_image_url + "/" + values.image} />
                   </Grid>
                   <Grid container justify="center" lg={7} xs={12} className={classes.formContainer}>
-                    {/* nama petugas */}
                     <Grid container alignItems="center">
                       <Grid item xs={4}>
                         <Typography variant="h6">Nama</Typography>
@@ -281,8 +276,6 @@ export default function DataAdminPetugasCRUDFragment() {
                         </TextField>
                       </Grid>
                     </Grid>
-
-                    {/* username */}
                     <Grid container alignItems="center">
                       <Grid item xs={4}>
                         <Typography variant="h6">Username</Typography>
@@ -297,8 +290,6 @@ export default function DataAdminPetugasCRUDFragment() {
                         </TextField>
                       </Grid>
                     </Grid>
-
-                    {/* pasword */}
                     <Grid container alignItems="center">
                       <Grid item xs={4}>
                         <Typography variant="h6">Password</Typography>
@@ -313,8 +304,6 @@ export default function DataAdminPetugasCRUDFragment() {
                         </TextField>
                       </Grid>
                     </Grid>
-
-                    {/* level */}
                     <Grid container alignItems="center">
                       <Grid item xs={4}>
                         <Typography variant="h6">Role</Typography>
@@ -338,9 +327,7 @@ export default function DataAdminPetugasCRUDFragment() {
 
                   </Grid>
                 </Grid>
-                {/* body card end */}
                 <Grid container justify="center">
-                  {/* button save */}
                   <Button
                     variant="contained"
                     color="primary"
@@ -356,9 +343,6 @@ export default function DataAdminPetugasCRUDFragment() {
             </div>
           </Fade>
         </Modal>
-        {/* modal edit end */}
-
-        {/* modal add start*/}
         <Modal
           aria-labelledby="transition-modal-title"
           aria-describedby="transition-modal-description"
@@ -372,10 +356,7 @@ export default function DataAdminPetugasCRUDFragment() {
             <div className={classes.paperAdmin}>
               <Grid container justify="center" alignItems="center">
                 <Typography variant="h4">FORM TAMBAH ADMIN</Typography>
-
-                {/* body card start */}
                 <Grid container justify="center" className={classes.formContainer}>
-                  {/* nama petugas */}
                   <Grid container alignItems="center">
                     <Grid item xs={4}>
                       <Typography variant="h6">Nama</Typography>
@@ -390,8 +371,6 @@ export default function DataAdminPetugasCRUDFragment() {
                       </TextField>
                     </Grid>
                   </Grid>
-
-                  {/* username */}
                   <Grid container alignItems="center">
                     <Grid item xs={4}>
                       <Typography variant="h6">Username</Typography>
@@ -406,8 +385,6 @@ export default function DataAdminPetugasCRUDFragment() {
                       </TextField>
                     </Grid>
                   </Grid>
-
-                  {/* pasword */}
                   <Grid container alignItems="center">
                     <Grid item xs={4}>
                       <Typography variant="h6">Password</Typography>
@@ -422,8 +399,6 @@ export default function DataAdminPetugasCRUDFragment() {
                       </TextField>
                     </Grid>
                   </Grid>
-
-                  {/* level */}
                   <Grid container alignItems="center">
                     <Grid item xs={4}>
                       <Typography variant="h6">Role</Typography>
@@ -444,8 +419,6 @@ export default function DataAdminPetugasCRUDFragment() {
                       </TextField>
                     </Grid>
                   </Grid>
-
-                  {/* upload */}
                   <Grid container alignItems="center">
                     <Grid item xs={4}>
                       <Typography variant="h6">Image</Typography>
@@ -460,22 +433,11 @@ export default function DataAdminPetugasCRUDFragment() {
                         type="file"
                         onChange={event => setValues({ ...values, "image": event.target.files[0] })}
                       />
-                      {/* <label htmlFor="contained-button-file">
-                                                <Button variant="contained" color="primary" component="span" className={classes.inputField}>
-                                                    click to upload!
-                                                </Button>
-                                            </label> */}
                     </Grid>
                   </Grid>
-
-
                 </Grid>
               </Grid>
-              {/* body card end */}
-
-              {/* button field */}
               <Grid container justify="center">
-                {/* button save */}
                 <Button
                   variant="contained"
                   color="primary"
@@ -486,14 +448,9 @@ export default function DataAdminPetugasCRUDFragment() {
                   Save
                 </Button>
               </Grid>
-              {/* button field end */}
-
             </div>
           </Fade>
         </Modal>
-        {/* modal add end */}
-
-        {/* snackbar */}
         <Snackbar
           open={snackAlert}
           autoHideDuration={6000}

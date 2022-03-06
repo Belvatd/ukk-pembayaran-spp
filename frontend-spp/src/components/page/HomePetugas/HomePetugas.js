@@ -1,12 +1,14 @@
 import React from 'react'
-import Navbar from '../../elements/Navbar'
+import Navbar from '../../elements/PageBase'
 import HomePetugasFragment from '../../fragments/HomePetugasFragment'
 
 export default function HomePetugas() {
   return (
     <div>
-      <Navbar/>
-      <HomePetugasFragment />
+      <Navbar />
+      <div className="rootFragment">
+        <HomePetugasFragment />
+      </div>
     </div>
   )
 }

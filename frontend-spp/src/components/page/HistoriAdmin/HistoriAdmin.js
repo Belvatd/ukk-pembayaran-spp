@@ -1,12 +1,14 @@
 import React from 'react'
-import Navbar from '../../elements/Navbar'
+import Navbar from '../../elements/PageBase'
 import HistoriAdminFragment from '../../fragments/HistoriAdminFragment'
 
 export default function HistoriAdmin() {
   return (
     <div>
       <Navbar />
-      <HistoriAdminFragment />
+      <div className="rootFragment">
+        <HistoriAdminFragment />
+      </div>
     </div>
   )
 }

@@ -1,12 +1,14 @@
 import React from 'react'
-import Navbar from '../../elements/Navbar'
+import Navbar from '../../elements/PageBase'
 import DataKelasCRUDFragment from '../../fragments/DataKelasCRUDFragment'
 
 export default function DataKelasCRUD() {
   return (
     <div>
       <Navbar />
-      <DataKelasCRUDFragment />
+      <div className="rootFragment">
+        <DataKelasCRUDFragment />
+      </div>
     </div>
   )
 }

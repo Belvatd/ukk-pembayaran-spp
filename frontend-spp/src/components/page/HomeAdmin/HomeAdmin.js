@@ -1,12 +1,14 @@
 import React from 'react'
-import Navbar from '../../elements/Navbar'
+import Navbar from '../../elements/PageBase'
 import HomeAdminFragment from '../../fragments/HomeAdminFragment'
 
 export default function HomeAdmin() {
   return (
     <div>
-      <Navbar/>
-      <HomeAdminFragment />
+      <Navbar />
+      <div className="rootFragment">
+        {/* <HomeAdminFragment /> */}
+      </div>
     </div>
   )
 }

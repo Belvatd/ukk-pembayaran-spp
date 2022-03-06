@@ -1,1 +1,1 @@
-export {default} from './DataSiswaCRUDFragment';
+export {default} from './DataSiswaFragment';

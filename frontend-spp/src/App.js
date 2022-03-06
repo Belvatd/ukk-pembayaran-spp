@@ -1,4 +1,3 @@
-import './App.css';
 import Login from './components/page/Login';
 import { Routes, Route} from "react-router-dom";
 import HomeAdmin from './components/page/HomeAdmin';
@@ -12,7 +11,6 @@ import DataAdminPetugasCRUD from './components/page/DataAdminPetugasCRUD';
 import DataKelasCRUD from './components/page/DataKelasCRUD';
 import DataSPPCRUD from './components/page/DataSPPCRUD';
 import HistoriSiswa from './components/page/HistoriSiswa';
-import Coba from './components/fragments/Coba';
 
 function App() {
   return (

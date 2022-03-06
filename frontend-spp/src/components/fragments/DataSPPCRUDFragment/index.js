@@ -1,1 +1,1 @@
-export {default} from './DataSPPCRUDFragment';
+export {default} from './DataSPPFragment';

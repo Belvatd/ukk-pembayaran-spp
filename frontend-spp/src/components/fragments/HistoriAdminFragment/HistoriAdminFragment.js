@@ -210,7 +210,7 @@ export default function Histori() {
                                 className={classes.buttonInfo}
                                 startIcon={<InfoIcon />}
                               >
-                                Info
+                                {/* Info */}
                               </Button>
                               {/* Button delete */}
                               <Button
@@ -220,7 +220,7 @@ export default function Histori() {
                                 className={classes.button}
                                 startIcon={<DeleteIcon />}
                               >
-                                Delete
+                                {/* Delete */}
                               </Button>
                             </TableCell>
                           </TableRow>
@@ -302,6 +302,4 @@ export default function Histori() {
     localStorage.removeItem("role")
     window.location = "/"
   }
-
-
 }
