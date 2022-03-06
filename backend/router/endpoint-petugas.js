@@ -76,7 +76,7 @@ app.put("/",  authAdmin, upload.single("image"), async(req,res)=>{
     let param = await {id_petugas:req.body.id_petugas}
     let data = await {
         username: req.body.username,
-        password: md5(req.body.password),
+        // password: req.body.password,
         nama_petugas: req.body.nama_petugas,
         level:req.body.level
     }
@@ -154,7 +154,7 @@ app.post("/login", async(req,res)=>{
     }else{
         res.json({
             logged: false,
-            message: "invalid username or password"
+            message: param
         })
     }
 })
