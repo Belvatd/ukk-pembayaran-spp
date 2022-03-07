@@ -33,71 +33,19 @@ const getData = async (req, res) => {
   res.json(result)
 }
 
-// const postData = async (req, res) => {
-//   try {
-
-//     const payload = req.body
-//     const exist = await findOnePembayaran({ nisn: payload.nisn, tahun_dibayar: payload.tahun_dibayar, bulan_dibayar: payload.bulan_dibayar })
-//     if (exist) {
-//       return res.json({ message: 'already payed' })
-//     }
-
-//     let data = {
-//       id_petugas: req.body.id_petugas,
-//       nisn: req.body.nisn,
-//       tgl_bayar: new Date().toISOString().split('T')[0],
-//       bulan_dibayar: req.body.bulan_dibayar,
-//       tahun_dibayar: req.body.tahun_dibayar,
-//       id_spp: req.body.id_spp,
-//       jumlah_bayar: req.body.jumlah_bayar
-//     }
-
-//     let tunggakanAwal = await models.siswa.findOne({ where: { nisn: data.nisn } })
-//     if (tunggakanAwal.tunggakan === 0) {
-//       res.json({
-//         message: "Tidak ada tunggakan",
-//         data: result,
-//       })
-//     }
-//     else {
-//       const result = pembayaran.create(data)
-//         .then(result => {
-//           models.siswa.update({ tunggakan: (tunggakanAwal.tunggakan - data.jumlah_bayar) }, { where: { nisn: data.nisn } })
-//           res.json({
-//             message: "data has been inserted",
-//             data: result,
-//           })
-//         })
-//         .catch(error => {
-//           res.json({
-//             message: error.message
-//           })
-//         })
-//       if (result.err) {
-//         return res.json({ message: error.message })
-//       }
-//     }
-    
-//     return response(res, result, 'Success insert data pembayaran', 201)
-//   } catch (error) {
-//     return response(res, error, 'Failed insert data pembayaran', 500)
-//   }
-
-// }
-
 const postData = async (req, res) => {
   try {
 
     const payload = req.body
     const exist = await findOnePembayaran({ nisn: payload.nisn, tahun_dibayar: payload.tahun_dibayar, bulan_dibayar: payload.bulan_dibayar })
     if (exist) {
-      return res.json({ message: 'already payed' })
+      return res.json({ message: 'SPP bulan ' + payload.bulan_dibayar + ' sudah dibayar' })
     }
 
     let data = {
       id_petugas: req.body.id_petugas,
       nisn: req.body.nisn,
-      tgl_bayar: new Date().toISOString().split('T')[0],
+      tgl_bayar: new Date().toISOString(),
       bulan_dibayar: req.body.bulan_dibayar,
       tahun_dibayar: req.body.tahun_dibayar,
       id_spp: req.body.id_spp,
@@ -105,6 +53,9 @@ const postData = async (req, res) => {
     }
 
     let tunggakanAwal = await models.siswa.findOne({ where: { nisn: data.nisn } })
+    if (tunggakanAwal.tunggakan === 0) {
+      return res.json({ message: 'Tunggakan lunas' })
+    }
     const result = pembayaran.create(data)
       .then(result => {
         models.siswa.update({ tunggakan: (tunggakanAwal.tunggakan - data.jumlah_bayar) }, { where: { nisn: data.nisn } })
@@ -122,13 +73,11 @@ const postData = async (req, res) => {
       return res.json({ message: error.message })
     }
 
-    return response(res, result, 'Success insert data pembayaran', 201)
+    return response(res, result, 'SPP bulan ' + payload.bulan_dibayar + ' berhasil dibayar', 201)
   } catch (error) {
     return response(res, error, 'Failed insert data pembayaran', 500)
   }
-
 }
-
 
 const putData = async (req, res) => {
   let param = await { id_pembayaran: req.body.id_pembayaran }
@@ -220,6 +169,11 @@ app.get("/for-siswa/:nisn", authSiswa, async (req, res) => {
   })
   res.json(result)
 })
+
+app.post("/for-siswa/getTunggakan", async (req, res) => {
+  getTunggakan(req, res)
+})
+
 
 //adjustment pembayaran
 

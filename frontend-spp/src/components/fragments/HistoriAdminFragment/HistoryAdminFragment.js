@@ -7,10 +7,9 @@ import TableContainer from '@mui/material/TableContainer';
 import TableHead from '@mui/material/TableHead';
 import TablePagination from '@mui/material/TablePagination';
 import TableRow from '@mui/material/TableRow';
-import Button from '@mui/material/Button';
 import Alert from '@material-ui/lab/Alert';
 import {
-  Card, Grid, Typography, Fab, Snackbar,
+  Grid, Typography, Snackbar,
   Modal, Backdrop, Fade
 } from "@material-ui/core"
 
@@ -20,7 +19,6 @@ import axios from "axios"
 
 // // ICON
 import DeleteIcon from '@material-ui/icons/Delete';
-import AddCircleIcon from '@material-ui/icons/AddCircle';
 import InfoIcon from '@material-ui/icons/Info';
 
 import { useStyles } from '../css'
@@ -90,7 +88,7 @@ export default function StickyHeadTable() {
 
 
   // data from local-storage
-  let user = JSON.parse(localStorage.getItem("user"))
+  // let user = JSON.parse(localStorage.getItem("user"))
   const [values, setValues] = React.useState({
     token: localStorage.getItem("token"),
     role: (localStorage.getItem("role")),
@@ -115,11 +113,6 @@ export default function StickyHeadTable() {
     return header
   }
 
-  // add data handling
-  const addTriger = () => {
-    window.location = "/" + values.role + "/entri"
-  }
-
   const [modalInfo, setModalInfo] = React.useState(false)
   const infoTriger = (item) => {
     setModalInfo(true)
@@ -131,7 +124,7 @@ export default function StickyHeadTable() {
       "kelas": item.siswa.kelas,
       "spp": item.siswa.spp,
       "nisn": item.nisn,
-      "tgl_bayar": item.tgl_bayar,
+      "tgl_bayar": item.tgl_bayar.split('T')[0],
       "jumlah_bayar": item.jumlah_bayar,
       "bulan_dibayar": item.bulan_dibayar,
       "tahun_dibayar": item.tahun_dibayar,
@@ -157,7 +150,7 @@ export default function StickyHeadTable() {
     { label: "NISN", theValue: values.nisn },
     { label: "Kelas", theValue: values.kelas.nama_kelas },
     { label: "ID SPP", theValue: values.spp.id_spp },
-    { label: "Taggal Bayar", theValue: values.tgl_bayar },
+    { label: "Tanggal Bayar", theValue: values.tgl_bayar.split('T')[0] },
     { label: "Bulan Dibayar", theValue: values.bulan_dibayar },
     { label: "Tahun Dibayar", theValue: values.tahun_dibayar },
     { label: "Jumlah Nominal", theValue: values.jumlah_bayar },
@@ -198,7 +191,7 @@ export default function StickyHeadTable() {
                         {item.petugas.nama_petugas}
                       </TableCell>
                       <TableCell key="tgl_bayar" align="left" style={{ fontWeight: '500', fontFamily: 'Poppins', textAlign: 'center' }}>
-                        {item.tgl_bayar}
+                        {item.tgl_bayar.split('T')[0]}
                       </TableCell>
                       <TableCell key="bln_dibayar" align="left" style={{ fontWeight: '500', fontFamily: 'Poppins', textAlign: 'center' }}>
                         {item.bulan_dibayar}
@@ -253,7 +246,6 @@ export default function StickyHeadTable() {
               {/* body card start */}
               <Grid container justify="center" alignItems="center">
                 <Typography variant="p" className={classes.titleModal}>Detail Pembayaran SPP</Typography>
-                {/* <p className={classes.titleModal}>Detail Pembayaran SPP</p> */}
                 <Grid container className={classes.formContainer} justify="center">
                   {/* info start */}
                   {formModalInfo.map(item => (

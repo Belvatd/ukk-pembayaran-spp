@@ -1,5 +1,4 @@
 import { makeStyles } from '@material-ui/core/styles';
-import { height } from '@mui/system';
 
 const useStyles = makeStyles((theme) => ({
     // home start
@@ -277,8 +276,27 @@ const useStyles = makeStyles((theme) => ({
     // ROW
     row: {
         display: 'flex'
-    }
+    },
 
+    // TUNGGAKAN
+    cardTunggakan:{
+        backgroundColor:'#0275d8',
+        marginTop:'1rem'
+    },
+    titleTunggakan:{
+        fontSize:'24px',
+        fontWeight:'600',
+        color:'#fff',
+        padding:'1rem'
+    },
+    nominalTunggakan:{
+        fontSize:'18px',
+        fontWeight:'400',
+        color:'#fff',
+        paddingLeft:'1rem',
+        marginTop:'-24px',
+        paddingBottom:'1rem'
+    }
 }))
 
 export { useStyles }

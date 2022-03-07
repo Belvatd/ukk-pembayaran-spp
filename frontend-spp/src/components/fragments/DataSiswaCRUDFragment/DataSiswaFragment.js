@@ -51,6 +51,7 @@ export default function StickyHeadTable() {
   const [data, setData] = React.useState([]) //data siswa
   const [dataKelas, setDataKelas] = React.useState([]) //data kelas
   const [dataSpp, setDataSpp] = React.useState([]) //data spp
+  const [dataTunggakan, setDataTunggakan]=React.useState([]) //data tunggakan
 
 
   // axios function
@@ -58,6 +59,7 @@ export default function StickyHeadTable() {
     getSiswa();
     getSPP();
     getKelas();
+    getTunggakan();
   }, [])
 
   // Axios operation
@@ -88,6 +90,21 @@ export default function StickyHeadTable() {
     axios.get(url, headerConfig())
       .then(res => {
         setDataKelas(res.data)
+      })
+      .catch(err => {
+        console.log(err)
+      })
+  }
+
+  let loadData = {
+    nisn: data.nisn,
+    tahun_dibayar: [2021,2022],
+  }
+  const getTunggakan = () => {
+    let url = base_url + "/transaksi/for-siswa/getTunggakan"
+    axios.post(url, loadData ,headerConfig())
+      .then(res => {
+        setDataTunggakan(res.data)
       })
       .catch(err => {
         console.log(err)
@@ -193,15 +210,15 @@ export default function StickyHeadTable() {
     setModalEdit(true)
     setValues({
       ...values,
-      ["nisn"]: item.nisn,
-      ["nis"]: item.nis,
-      ["nama_siswa"]: item.nama,
-      ["id_kelas"]: item.id_kelas,
-      ["alamat"]: item.alamat,
-      ["no_telp"]: item.no_telp,
-      ["id_spp"]: item.id_spp,
-      ["username"]: item.username,
-      ["image"]: item.image,
+      "nisn": item.nisn,
+      "nis": item.nis,
+      "nama_siswa": item.nama,
+      "id_kelas": item.id_kelas,
+      "alamat": item.alamat,
+      "no_telp": item.no_telp,
+      "id_spp": item.id_spp,
+      "username": item.username,
+      "image": item.image,
     })
   }
 
@@ -214,16 +231,16 @@ export default function StickyHeadTable() {
     setModalInfo(true)
     setValues({
       ...values,
-      ["nisn"]: item.nisn,
-      ["nis"]: item.nis,
-      ["nama_siswa"]: item.nama,
-      ["kelas"]: item.kelas,
-      ["alamat"]: item.alamat,
-      ["no_telp"]: item.no_telp,
-      ["spp"]: item.spp,
-      ["username"]: item.username,
-      ["image"]: item.image,
-      ["action"]: "edit"
+      "nisn": item.nisn,
+      "nis": item.nis,
+      "nama_siswa": item.nama,
+      "kelas": item.kelas,
+      "alamat": item.alamat,
+      "no_telp": item.no_telp,
+      "spp": item.spp,
+      "username": item.username,
+      "image": item.image,
+      "action": "edit"
     })
   }
 
@@ -233,16 +250,16 @@ export default function StickyHeadTable() {
     setModalInfo(false)
     setValues({
       ...values,
-      ["nisn"]: "",
-      ["nis"]: "",
-      ["nama_siswa"]: "",
-      ["id_kelas"]: "",
-      ["alamat"]: "",
-      ["no_telp"]: "",
-      ["id_spp"]: "",
-      ["username"]: "",
-      ["image"]: "",
-      ["action"]: ""
+      "nisn": "",
+      "nis": "",
+      "nama_siswa": "",
+      "id_kelas": "",
+      "alamat": "",
+      "no_telp": "",
+      "id_spp": "",
+      "username": "",
+      "image": "",
+      "action": ""
     })
   }
 
@@ -312,7 +329,7 @@ export default function StickyHeadTable() {
                         {item.nama}
                       </TableCell>
                       <TableCell key="telp" align="left" style={{ fontWeight: '500', fontFamily: 'Poppins', textAlign: 'center' }}>
-                        Rp{item.tunggakan || '0'}
+                        Rp{dataTunggakan.data || '0'}
                       </TableCell>
                       <TableCell key="aksi" align="left" style={{ fontWeight: '500', fontFamily: 'Poppins', textAlign: 'center' }}>
                         <IconButton color="info" onClick={() => infoTriger(item)}>

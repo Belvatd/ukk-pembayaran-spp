@@ -1,13 +1,12 @@
+import { Paper } from '@material-ui/core';
 import React from 'react';
-import { Card } from 'react-bootstrap';
-
-// URL
-import { siswa_image_url } from "../../../configs/config"
-import { Link } from 'react-router-dom';
-import routes from '../../../configs/routes';
-
+import { base_url } from '../../../configs/config';
+import axios from 'axios';
+import { useStyles } from '../css'
 
 export default function HomeSiswaFragment() {
+  const classes = useStyles()
+
   let user = JSON.parse(localStorage.getItem("user"))
 
   const [values] = React.useState({
@@ -16,34 +15,49 @@ export default function HomeSiswaFragment() {
     name: user.nama
   });
 
+  React.useEffect(() => {
+    getTunggakan()
+  }, [])
+
+  // data from database
+  const [data, setData] = React.useState([]);
+
+  // Axios operation
+  const getSiswa = (prop) => (event) => {
+    let url = base_url + "/siswa/for-" + values.role + "/" + prop + "/" + event.target.value
+    axios.get(url, headerConfig())
+  }
+  
+  const headerConfig = () => {
+    let header = {
+      headers: { Authorization: `Bearer ${values.token}` }
+    }
+    return header
+  }
+
+  let loadData = {
+    nisn: getSiswa("nisn"),
+    tahun_dibayar: [2021,2022],
+  }
+  const getTunggakan = () => {
+    let url = base_url + "/transaksi/for-siswa/getTunggakan"
+    axios.post(url, loadData ,headerConfig())
+      .then(res => {
+        setData(res.data)
+      })
+      .catch(err => {
+        console.log(err)
+      })
+  }
+
   if (values.role === "siswa") {
     return (
       <>
-        <div className="bgHome" >
-          <h1 className="homeTitle">SMK Telkom Malang</h1>
-          <p className="homeDesc">Sistem Pembayaran SPP</p>
-        </div>
-        <div className="container root-adminHome">
-          <div className="row">
-            <Card className="col-8 cardStyleProfile">
-              <Card.Body>
-                <div className="row profileCard">
-                  <div className="col-3">
-                    <img className="profilPicture" alt="profilPicture" src={siswa_image_url + "/" + user.image} />
-                  </div>
-                  <div className="col">
-                    <p className="nameProfile">{values.name}</p>
-                    <p className="roleProfile">{values.role}</p>
-                  </div>
-                </div>
-              </Card.Body>
-            </Card>
-            <div className="space"></div>
-            <Link className="col-3 cardTransaksi" to={routes.ENTRI}>
-                <p className="transaksiNow">Transaksi Sekarang</p>
-            </Link>
-          </div>
-        </div>
+      <br />
+        <Paper className={classes.cardTunggakan} sx={{ width: '95%', overflow: 'hidden' }} style={{ marginLeft: '2rem', marginRight: '2rem' }}>
+          <p className={classes.titleTunggakan}>Total tunggakan tahun 2021/2022</p>
+          <p className={classes.nominalTunggakan}>Rp{data.data}</p>
+        </Paper>
       </>
     )
   } else {

@@ -1,8 +1,10 @@
 import React, { useState, useEffect } from 'react'
 import {
-  Card, Grid, Paper, Table, TableCell, TableContainer,
-  TableHead, TableRow, TableBody, Typography, Button, Modal, Backdrop, Fade
+  Grid, Paper, Table, TableCell, TableContainer,
+  TableHead, TableRow, TableBody, Typography, Modal, Backdrop, Fade
 } from "@material-ui/core"
+import { IconButton } from '@mui/material';
+import TablePagination from '@mui/material/TablePagination';
 
 // URL
 import { base_url } from "../../../configs/config"
@@ -16,7 +18,7 @@ import { useStyles } from '../css'
 export default function Histori() {
 
   // data from database
-  const [data, setData] = useState([]) //histori
+  const [data, setData] = useState([])
 
 
   // axios function
@@ -98,123 +100,105 @@ export default function Histori() {
     { label: "NISN", theValue: values.nisn },
     { label: "Kelas", theValue: values.kelas.nama_kelas },
     { label: "ID SPP", theValue: values.spp.id_spp },
-    { label: "Taggal Bayar", theValue: values.tgl_bayar },
+    { label: "Taggal Bayar", theValue: values.tgl_bayar.split('T')[0] },
     { label: "Bulan Dibayar", theValue: values.bulan_dibayar },
     { label: "Tahun Dibayar", theValue: values.tahun_dibayar },
     { label: "Jumlah Nominal", theValue: values.jumlah_bayar },
   ]
 
+  const columns = [
+    { id: 'id', label: 'Id', align: 'center' },
+    { id: 'nama_siswa', label: 'Nama Siswa', align: 'center' },
+    { id: 'nama_petugas', label: 'Nama Petugas', align: 'center' },
+    { id: 'tgl_bayar', label: 'Tanggal Bayar', align: 'center' },
+    { id: 'bln_dibayar', label: 'Bulan Dibayar', align: 'center' },
+    { id: 'thn_dibayar', label: 'Tahun Dibayar', align: 'center' },
+    { id: 'jumlah', label: 'Jumlah Bayar', align: 'center' },
+    { id: 'aksi', label: 'Aksi', align: 'center' },
+  ];
+
+  const [page, setPage] = React.useState(0);
+  const [rowsPerPage, setRowsPerPage] = React.useState(10);
+
+  const handleChangePage = (event, newPage) => {
+    setPage(newPage);
+  };
+
+  const handleChangeRowsPerPage = (event) => {
+    setRowsPerPage(+event.target.value);
+    setPage(0);
+  };
 
   if (values.role === "siswa") {
     return (
       <>
-        <Grid container>
-          {/* Header Start */}
-          <Grid container className={classes.headerContainer} alignItems="center" justify="center">
-            <Card className={classes.headerCard} elevation={10}>
-              <Grid container justify="center">
-                <Grid container lg={5} justify="center" alignItems="center">
-                  <Grid item>
-                    <Typography variant="h2" className={classes.headerText}>
-                      <b>Histori <br /> Pembayaran</b>
-                    </Typography>
-                  </Grid>
-                </Grid>
-                <Grid container lg={4} alignItems="center" justify="center">
-                  <img src="https://drive.google.com/uc?id=1DY2MBJuiaWnyo43a-0xiqlAqc1Kykwau" />
-                </Grid>
-              </Grid>
-            </Card>
-          </Grid>
-          {/* Header End */}
+      <h2 className="titlePage">Histori Pembayaran SPP</h2>
+        <Paper sx={{ width: '95%', overflow: 'hidden' }} style={{ marginLeft: '2rem', marginRight: '2rem' }}>
+          <TableContainer sx={{ maxHeight: 500 }}>
+            <Table stickyHeader aria-label="sticky table">
+              <TableHead>
+                <TableRow>
+                  {columns.map((column) => (
+                    <TableCell
+                      key={column.id}
+                      align={column.align}
+                      style={{ fontWeight: '600', fontFamily: 'Poppins', color: '#fff', backgroundColor: '#0275d8', lineHeight: '16px' }}
+                    >
+                      {column.label}
+                    </TableCell>
+                  ))}
+                </TableRow>
+              </TableHead>
+              <TableBody>
+                {data
+                  .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
+                  .map(item => (
+                    <TableRow hover>
+                      <TableCell key="id" align="left" style={{ fontWeight: '500', fontFamily: 'Poppins', textAlign: 'center' }}>
+                        {item.id_pembayaran}
+                      </TableCell>
+                      <TableCell key="nama_siswa" align="left" style={{ fontWeight: '500', fontFamily: 'Poppins', textAlign: 'center' }}>
+                        {item.siswa.nama}
+                      </TableCell>
+                      <TableCell key="nama_petugas" align="left" style={{ fontWeight: '500', fontFamily: 'Poppins', textAlign: 'center' }}>
+                        {item.petugas.nama_petugas}
+                      </TableCell>
+                      <TableCell key="tgl_bayar" align="left" style={{ fontWeight: '500', fontFamily: 'Poppins', textAlign: 'center' }}>
+                        {item.tgl_bayar.split('T')[0]}
+                      </TableCell>
+                      <TableCell key="bln_dibayar" align="left" style={{ fontWeight: '500', fontFamily: 'Poppins', textAlign: 'center' }}>
+                        {item.bulan_dibayar}
+                      </TableCell>
+                      <TableCell key="thn_dibayar" align="left" style={{ fontWeight: '500', fontFamily: 'Poppins', textAlign: 'center' }}>
+                        {item.tahun_dibayar}
+                      </TableCell>
+                      <TableCell key="jumlah" align="left" style={{ fontWeight: '500', fontFamily: 'Poppins', textAlign: 'center' }}>
+                        Rp {item.jumlah_bayar}
+                      </TableCell>
+                      <TableCell key="aksi" align="left" style={{ fontWeight: '500', fontFamily: 'Poppins', textAlign: 'center' }}>
+                        {/* button info */}
+                        <IconButton color="info" onClick={() => infoTriger(item)}>
+                          <InfoIcon />
+                        </IconButton>
+                      </TableCell>
+                    </TableRow>
+                  ))
+                }
+              </TableBody>
+            </Table>
+          </TableContainer>
+          <TablePagination
+            style={{ alignContent: 'center' }}
+            rowsPerPageOptions={[10, 25, 100]}
+            component="div"
+            count={data.length}
+            rowsPerPage={rowsPerPage}
+            page={page}
+            onPageChange={handleChangePage}
+            onRowsPerPageChange={handleChangeRowsPerPage}
+          />
+        </Paper>
 
-          {/* Body start */}
-          <Grid container className={classes.bodyContainer} justify="center">
-            <Grid container justify="center">
-              <Grid item lg={10}>
-                <Paper elevation={10}>
-                  <TableContainer className={classes.tableBody}>
-                    <Table stickyHeader >
-                      <TableHead>
-                        <TableRow>
-                          <TableCell key="id_histori" align="left">
-                            ID
-                          </TableCell>
-                          <TableCell key="siswa" align="left">
-                            NAMA SISWA
-                          </TableCell>
-                          <TableCell key="petugas" align="left">
-                            NAMA PETUGAS
-                          </TableCell>
-                          <TableCell key="tanggal" align="left">
-                            TANGGAL BAYAR
-                          </TableCell>
-                          <TableCell key="bulan" align="left">
-                            BULAN DIBAYAR
-                          </TableCell>
-                          <TableCell key="tahun" align="left">
-                            TAHUN DIBAYAR
-                          </TableCell>
-                          <TableCell key="jumlah" align="left">
-                            JUMLAH DIBAYAR
-                          </TableCell>
-                          <TableCell key="aksi" align="left">
-                            AKSI
-                          </TableCell>
-                        </TableRow>
-                      </TableHead>
-
-                      <TableBody>
-                        {data.map(item => (
-                          <TableRow hover>
-                            <TableCell key="id_histori" align="left" className={classes.columnID}>
-                              {item.id_pembayaran}
-                            </TableCell>
-                            <TableCell key="siswa" align="left" className={classes.columnNama}>
-                              {item.siswa.nama}
-                            </TableCell>
-                            <TableCell key="petugas" align="left" className={classes.columnNama}>
-                              {values.petugas.nama_petugas}
-                            </TableCell>
-                            <TableCell key="tanggal" align="left" className={classes.columnTanggal}>
-                              {item.tgl_bayar}
-                            </TableCell>
-                            <TableCell key="bulan" align="left" className={classes.columnTanggal}>
-                              {item.bulan_dibayar}
-                            </TableCell>
-                            <TableCell key="tahun" align="left" className={classes.columnTanggal}>
-                              {item.tahun_dibayar}
-                            </TableCell>
-                            <TableCell key="jumlah" align="left" className={classes.columnJumlah}>
-                              Rp {item.jumlah_bayar}
-                            </TableCell>
-                            <TableCell key="aksi" align="left" className={classes.columnAksi}>
-                              {/* button info */}
-                              <Button
-                                variant="contained"
-                                color="primary"
-                                onClick={() => infoTriger(item)}
-                                className={classes.buttonInfo}
-                                startIcon={<InfoIcon />}
-                              >
-                                Info
-                              </Button>
-                              {/* Button delete */}
-                            </TableCell>
-                          </TableRow>
-                        ))}
-
-                      </TableBody>
-                    </Table>
-                  </TableContainer>
-                </Paper>
-              </Grid>
-            </Grid>
-          </Grid>
-          {/* Body end */}
-        </Grid>
-
-        {/* modal info start*/}
         <Modal
           aria-labelledby="transition-modal-title"
           aria-describedby="transition-modal-description"
@@ -225,34 +209,26 @@ export default function Histori() {
           BackdropComponent={Backdrop}
         >
           <Fade in={modalInfo}>
-            <div className={classes.paperHistori}>
-
-              {/* body card start */}
+            <div className={classes.paperModal}>
               <Grid container justify="center" alignItems="center">
-                <Typography variant="h4">DETAIL SISWA</Typography>
+                <Typography variant="p" className={classes.titleModal}>Detail pembayaran</Typography>
                 <Grid container className={classes.formContainer} justify="center">
-                  {/* info start */}
                   {formModalInfo.map(item => (
                     <Grid container justify="center">
                       <Grid item xs={3}>
-                        <Typography variant="h5">{item.label} </Typography>
+                        <Typography variant="p" className={classes.labelModal}>{item.label} </Typography>
                       </Grid>
                       <Grid container justify="center" xs={3}>:</Grid>
                       <Grid item xs={6}>
-                        <Typography variant="h6">{item.theValue}</Typography>
+                        <Typography variant="p" className={classes.valueModal}>{item.theValue}</Typography>
                       </Grid>
                     </Grid>
                   ))}
-                  {/* info end */}
                 </Grid>
               </Grid>
-              {/* body card end */}
-
             </div>
           </Fade>
         </Modal>
-        {/* modal add end */}
-
       </>
     )
   } else {

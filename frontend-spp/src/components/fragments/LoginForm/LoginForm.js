@@ -32,7 +32,6 @@ export default function LoginForm() {
           setValues({ ...values, "logged": response.data.logged })
           if (values.logged) {
             setValues({ ...values, "role": response.data.role })
-            // console.log(values)
             let user = response.data.data
             let token = response.data.token
             let role = response.data.role
@@ -41,7 +40,7 @@ export default function LoginForm() {
             localStorage.setItem("role", role)
             window.location = "/siswa/home"
           } else {
-            console.log("belum masuk gais")
+            console.log("gagal masuk")
           }
         })
         .catch(error => console.log(error))
@@ -52,7 +51,6 @@ export default function LoginForm() {
           setValues({ ...values, "logged": response.data.logged })
           if (values.logged) {
             setValues({ ...values, "role": response.data.data.role })
-            // console.log(values)
             let user = response.data.data
             let token = response.data.token
             let fixRole = (response.data.data.level).toLowerCase()
@@ -66,11 +64,11 @@ export default function LoginForm() {
               window.location = routes.HOME_PETUGAS
             }
           } else {
-            console.log("belum masuk gais")
+            console.log("gagal masuk")
           }
         })
         .catch(error => console.log(error))
-      console.log("belum masuk gais")
+      console.log("gagal masuk")
     }
   }
 

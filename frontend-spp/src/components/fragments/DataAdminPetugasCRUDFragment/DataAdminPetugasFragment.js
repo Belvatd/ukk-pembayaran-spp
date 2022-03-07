@@ -34,7 +34,7 @@ const columns = [
   { id: 'aksi', label: 'Aksi', align: 'center' },
 ];
 
-export default function StickyHeadTable() {
+export default function DataAdminPetugasFragment() {
   const classes = useStyles();
   const [page, setPage] = React.useState(0);
   const [rowsPerPage, setRowsPerPage] = React.useState(10);
@@ -161,16 +161,16 @@ export default function StickyHeadTable() {
     setModalInfo(true)
     setValues({
       ...values,
-      ["nisn"]: item.nisn,
-      ["nis"]: item.nis,
-      ["nama_siswa"]: item.nama,
-      ["kelas"]: item.kelas,
-      ["alamat"]: item.alamat,
-      ["no_telp"]: item.no_telp,
-      ["spp"]: item.spp,
-      ["username"]: item.username,
-      ["image"]: item.image,
-      ["action"]: "edit"
+      "nisn": item.nisn,
+      "nis": item.nis,
+      "nama_siswa": item.nama,
+      "kelas": item.kelas,
+      "alamat": item.alamat,
+      "no_telp": item.no_telp,
+      "spp": item.spp,
+      "username": item.username,
+      "image": item.image,
+      "action": "edit"
     })
   }
 
@@ -179,11 +179,11 @@ export default function StickyHeadTable() {
     setValues({ ...values, "action": "edit" })
     setValues({
       ...values,
-      ["username"]: item.username,
-      ["nama_petugas"]: item.nama_petugas,
-      ["level"]: item.level,
-      ["image"]: item.image,
-      ["id_petugas"]: item.id_petugas,
+      "username": item.username,
+      "nama_petugas": item.nama_petugas,
+      "level": item.level,
+      "image": item.image,
+      "id_petugas": item.id_petugas,
     });
   }
 
@@ -199,12 +199,12 @@ export default function StickyHeadTable() {
     setModalInfo(false);
     setValues({
       ...values,
-      ["username"]: "",
-      ["nama_petugas"]: "",
-      ["level"]: "",
-      ["image"]: "",
-      ["id_petugas"]: "",
-      ["password"]: ""
+      "username": "",
+      "nama_petugas": "",
+      "level": "",
+      "image": "",
+      "id_petugas": "",
+      "password": ""
     });
   }
 

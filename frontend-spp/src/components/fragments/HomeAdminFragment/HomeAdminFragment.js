@@ -1,9 +1,8 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { Card } from 'react-bootstrap';
-import axios from 'axios';
 
 // URL
-import { admin_image_url, base_url } from "../../../configs/config"
+import { admin_image_url } from "../../../configs/config"
 import { Link } from 'react-router-dom';
 import routes from '../../../configs/routes';
 
@@ -11,7 +10,7 @@ import routes from '../../../configs/routes';
 export default function HomeAdminFragment() {
   let user = JSON.parse(localStorage.getItem("user"))
 
-  const [values, setValues] = React.useState({
+  const [values] = React.useState({
     token: localStorage.getItem("token"),
     role: (localStorage.getItem("role")),
     name: user.nama_petugas
