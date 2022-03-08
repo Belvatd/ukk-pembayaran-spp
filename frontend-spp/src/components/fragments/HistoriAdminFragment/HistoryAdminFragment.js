@@ -10,8 +10,9 @@ import TableRow from '@mui/material/TableRow';
 import Alert from '@material-ui/lab/Alert';
 import {
   Grid, Typography, Snackbar,
-  Modal, Backdrop, Fade
+  Modal, Backdrop, Fade, Button
 } from "@material-ui/core"
+import Pdf from "react-to-pdf";
 
 // URL
 import { base_url } from "../../../configs/config"
@@ -20,9 +21,12 @@ import axios from "axios"
 // // ICON
 import DeleteIcon from '@material-ui/icons/Delete';
 import InfoIcon from '@material-ui/icons/Info';
+import DownloadIcon from '@mui/icons-material/Download';
 
 import { useStyles } from '../css'
 import { IconButton } from '@mui/material';
+
+const ref = React.createRef();
 
 const columns = [
   { id: 'id', label: 'Id', align: 'center' },
@@ -203,14 +207,13 @@ export default function StickyHeadTable() {
                         Rp {item.jumlah_bayar}
                       </TableCell>
                       <TableCell key="aksi" align="left" style={{ fontWeight: '500', fontFamily: 'Poppins', textAlign: 'center' }}>
-                        {/* button info */}
                         <IconButton color="info" onClick={() => infoTriger(item)}>
                           <InfoIcon />
                         </IconButton>
-                        {/* Button delete */}
                         <IconButton color="error" onClick={() => deleteData(item)}>
                           <DeleteIcon />
                         </IconButton>
+
                       </TableCell>
                     </TableRow>
                   ))
@@ -230,7 +233,6 @@ export default function StickyHeadTable() {
           />
         </Paper>
 
-        {/* modal info start*/}
         <Modal
           aria-labelledby="transition-modal-title"
           aria-describedby="transition-modal-description"
@@ -241,7 +243,7 @@ export default function StickyHeadTable() {
           BackdropComponent={Backdrop}
         >
           <Fade in={modalInfo}>
-            <div className={classes.paperHistori}>
+            <div className={classes.paperHistori} ref={ref}>
 
               {/* body card start */}
               <Grid container justify="center" alignItems="center">
@@ -259,17 +261,20 @@ export default function StickyHeadTable() {
                       </Grid>
                     </Grid>
                   ))}
-                  {/* info end */}
+                  <br />
                 </Grid>
+                <Pdf targetRef={ref} filename="struk-pembayaran.pdf">
+                  {({ toPdf }) =>
+                    <Button color="primary" variant="outlined" onClick={toPdf} startIcon={<DownloadIcon />}>
+                      Download
+                    </Button>
+                  }
+                </Pdf>
               </Grid>
-              {/* body card end */}
 
             </div>
           </Fade>
         </Modal>
-        {/* modal add end */}
-
-        {/* snackbar */}
         <Snackbar
           open={snackAlert}
           autoHideDuration={6000}
@@ -278,6 +283,7 @@ export default function StickyHeadTable() {
             {values.message}
           </Alert>
         </Snackbar>
+
       </>
     );
   }
