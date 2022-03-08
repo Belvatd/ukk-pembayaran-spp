@@ -51,15 +51,12 @@ export default function StickyHeadTable() {
   const [data, setData] = React.useState([]) //data siswa
   const [dataKelas, setDataKelas] = React.useState([]) //data kelas
   const [dataSpp, setDataSpp] = React.useState([]) //data spp
-  const [dataTunggakan, setDataTunggakan]=React.useState([]) //data tunggakan
-
 
   // axios function
   React.useEffect(() => {
     getSiswa();
     getSPP();
     getKelas();
-    getTunggakan();
   }, [])
 
   // Axios operation
@@ -79,6 +76,7 @@ export default function StickyHeadTable() {
     axios.get(url, headerConfig())
       .then(res => {
         setDataSpp(res.data)
+        setValues({ ...values, "nominal": res.data.message })
       })
       .catch(err => {
         console.log(err)
@@ -90,21 +88,6 @@ export default function StickyHeadTable() {
     axios.get(url, headerConfig())
       .then(res => {
         setDataKelas(res.data)
-      })
-      .catch(err => {
-        console.log(err)
-      })
-  }
-
-  let loadData = {
-    nisn: data.nisn,
-    tahun_dibayar: [2021,2022],
-  }
-  const getTunggakan = () => {
-    let url = base_url + "/transaksi/for-siswa/getTunggakan"
-    axios.post(url, loadData ,headerConfig())
-      .then(res => {
-        setDataTunggakan(res.data)
       })
       .catch(err => {
         console.log(err)
@@ -124,6 +107,7 @@ export default function StickyHeadTable() {
     form.append("id_spp", values.id_spp)
     form.append("username", values.username)
     form.append("password", values.password)
+    form.append("tunggakan", values.spp.nominal*12)
 
     if (values.image) {
       form.append("image", values.image)
@@ -136,6 +120,7 @@ export default function StickyHeadTable() {
           setValues({ ...values, "message": res.data.message })
           setSnackAlert(true)
           getSiswa()
+          console.log(values)
         })
         .catch(err => {
           console.log(err)
@@ -187,7 +172,8 @@ export default function StickyHeadTable() {
     username: "",
     password: "",
     image: "",
-    action: ""
+    action: "",
+    tunggakan:""
   });
 
   const handleChange = (prop) => (event) => {
@@ -224,7 +210,10 @@ export default function StickyHeadTable() {
 
   const addTriger = () => {
     setModalAdd(true)
-    setValues({ ...values, "action": "add" })
+    setValues({ 
+      ...values, 
+      "action": "add",
+     })
   }
 
   const infoTriger = (item) => {
@@ -329,7 +318,7 @@ export default function StickyHeadTable() {
                         {item.nama}
                       </TableCell>
                       <TableCell key="telp" align="left" style={{ fontWeight: '500', fontFamily: 'Poppins', textAlign: 'center' }}>
-                        Rp{dataTunggakan.data || '0'}
+                        Rp{item.tunggakan || '0'}
                       </TableCell>
                       <TableCell key="aksi" align="left" style={{ fontWeight: '500', fontFamily: 'Poppins', textAlign: 'center' }}>
                         <IconButton color="info" onClick={() => infoTriger(item)}>

@@ -17,10 +17,10 @@ module.exports = (sequelize, DataTypes) => {
       })
 
       // relation to pembayaran (id_spp)
-      this.hasMany(models.pembayaran, {
-        foreignKey: "id_spp",
-        as: "spp_pembayaran"
-      })
+      // this.hasMany(models.pembayaran, {
+      //   foreignKey: "id_spp",
+      //   as: "spp_pembayaran"
+      // })
 
       // relation to spp
       this.belongsTo(models.spp, {

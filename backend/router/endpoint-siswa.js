@@ -128,7 +128,8 @@ app.post("/", authAdmin, upload.single("image"), async (req, res) => {
             id_spp: req.body.id_spp,
             username: req.body.username,
             password: md5(req.body.password),
-            image: req.file.filename
+            image: req.file.filename,
+            tunggakan:req.body.tunggakan
         }
 
         siswa.create(data)
@@ -152,7 +153,7 @@ app.put("/", authAdmin, upload.single("image"), async (req, res) => {
         no_telp: req.body.no_telp,
         id_spp: req.body.id_spp,
         username: req.body.username,
-        password: md5(req.body.password),
+        // password: md5(req.body.password),
     }
 
     if (req.file) {
